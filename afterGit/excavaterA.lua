@@ -44,23 +44,21 @@ function lineB()
 	turtle.turnLeft()
 end
 function level()
-a = 1
+for z = 1,Config.hight+1 do
+local a = 0
+local i = 0
+while i<=Config.distance do
 
-for z = 1,Config.hight do
-i = 1
-while i <= Config.distance+1 do
-	if a == Config.distance+1 then
+	if a == Config.distance then
 	if Config.distance%2~=0 then
 	print("right")
 	turtle.turnRight()
-	turtle.forward()
-	break
-	end
-	if Config.distance%2==0 then
+	--turtle.forward()
+	else if Config.distance%2==0 then
 	print("left")
 	turtle.turnLeft()
-	turtle.forward()
-	break
+	--turtle.forward()
+	end
 	end
 	else if a%2 == 0 then
 	lineB()
@@ -69,23 +67,47 @@ while i <= Config.distance+1 do
 	end
 	end
 	end
+	
 	a = a+1
 	i = i+1
 end
-	
-	
-if Config.distance%2==0 then
-print("right")
-turtle.turnRight()
-end
-if Config.distance%2~=0 then
-print("left")
-turtle.turnLeft()
-end
+
+backingAB(z)
+
 turtle.digDown()
 turtle.down()
 end
 end
 
+
+function backingAB(y)
+if y==1 then
+if Config.distance%2==0 then
+print("right")
+turtle.back()
+--turtle.back()
+turtle.turnRight()
+else if Config.distance%2~=0 then
+print("left")
+turtle.back()
+--turtle.back()
+turtle.turnLeft()
+end
+end
+else if true then
+if Config.distance%2==0 then
+print("right")
+turtle.back()
+turtle.turnRight()
+else if Config.distance%2~=0 then
+print("left")
+turtle.back()
+turtle.turnLeft()
+end
+end
+end
+end
+
+end
 level()
 
